@@ -1,0 +1,22 @@
+{
+    "name": "oooo5435tg/php_local",
+    "description": "descc",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "oooO5435tg",
+            "email": "morlean@inbox.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 | ^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "core/Src/",
+            "": "app/"
+        }
+    }
+}
