@@ -11,3 +11,5 @@ Route::add('GET', '/employer_list', [Controller\Site::class, 'employerList']);
 Route::add('GET', '/add_department', [Controller\Site::class, 'addDepartment']);
 Route::add('GET', '/add_position', [Controller\Site::class, 'addPosition']);
 Route::add('GET', '/add_discipline', [Controller\Site::class, 'addDiscipline']);
+Route::add('GET', '/add_deanery', [Controller\Site::class, 'addDeanery']);
+Route::add('GET', '/add_employer', [Controller\Site::class, 'addEmployer']);
