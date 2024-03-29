@@ -22,7 +22,7 @@
         else:
             if (app()->auth::user()->id_role === 1) :
                 ?>
-                <a href="<?= app()->route->getUrl('/add_deanery') ?>">Добавить деканата</a>
+                <a href="<?= app()->route->getUrl('/signup') ?>">Добавить деканата</a>
             <?php
             elseif (app()->auth::user()->id_role === 2) :
                 ?>
