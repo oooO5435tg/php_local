@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use Model\Department;
+use Model\Discipline;
 use Model\Post;
 use Model\User;
 use Src\Request;
@@ -76,9 +78,13 @@ class Site
         return new View('site.employer_list', ['users' => $users]);
     }
 
-    public function addDepartment(): string
+    public function addDepartment(Request $request): string
     {
-        return new View('site.add_department');
+        $title_department = Department::all();
+        if ($request->method === 'POST'&& Department::create($request->all())){
+            app()->route->redirect('/add_department');
+        }
+        return new View('site.add_department', ['title_department' => $title_department]);
     }
     public function addPosition(Request $request): string
     {
@@ -89,9 +95,13 @@ class Site
         return new View('site.add_position', ['title_position' => $title_position]);
     }
 
-    public function addDiscipline(): string
+    public function addDiscipline(Request $request): string
     {
-        return new View('site.add_discipline');
+        $title_discipline = Discipline::all();
+        if ($request->method === 'POST'&& Discipline::create($request->all())){
+            app()->route->redirect('/add_discipline');
+        }
+        return new View('site.add_discipline', ['title_discipline' => $title_discipline]);
     }
 
     public function addDeanery(): string

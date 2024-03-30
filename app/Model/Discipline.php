@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Discipline extends Model
 {
-    protected $fillable = ['title_discipline'];
+    use HasFactory;
 
-    public static function create($attributes): bool
-    {
-        $discipline = new self($attributes);
-        return $discipline->save();
-    }
+    public $timestamps = false;
+    protected $fillable = [
+        'title_discipline',
+    ];
 }
