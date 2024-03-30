@@ -12,6 +12,8 @@ use Src\Auth\Auth;
 
 use Model\Position;
 
+use Model\Employer;
+
 use Src\Validator\Validator;
 
 class Site
@@ -74,8 +76,8 @@ class Site
 
     public function employerList(): string
     {
-        $users = User::all();
-        return new View('site.employer_list', ['users' => $users]);
+        $employers = Employer::all();
+        return new View('site.employer_list', ['employers' => $employers]);
     }
 
     public function addDepartment(Request $request): string
@@ -108,8 +110,12 @@ class Site
     {
         return new View('site.add_deanery');
     }
-    public function addEmployer(): string
+    public function addEmployer(Request $request): string
     {
-        return new View('site.add_employer');
+        $employers = Employer::all();
+        if ($request->method === 'POST'&& Employer::create($request->all())){
+            app()->route->redirect('/add_employer');
+        }
+        return new View('site.add_employer', ['employers' => $employers]);
     }
 }

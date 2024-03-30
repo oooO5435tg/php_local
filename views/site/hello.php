@@ -5,11 +5,11 @@
             <h3>Дисциплины,читаемые сотрудником(ами)</h3>
             <div style="display: flex; flex-direction: column">
                 <?php
-                $users = \Model\User::all();
-                foreach ($users as $user) {
+                $employers = \Model\Employer::all();
+                foreach ($employers as $employer) {
                     echo "<div style='display: flex; align-items: center; margin-bottom: 10px;'>
                             <input type='checkbox'>
-                            <label>" . e($user->name) . "</label>
+                            <label>" . e($employer->surname) . "</label>
                           </div>";
                 }
                 ?>
