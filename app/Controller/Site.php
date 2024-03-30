@@ -8,6 +8,8 @@ use Src\Request;
 use Src\View;
 use Src\Auth\Auth;
 
+use Model\Position;
+
 use Src\Validator\Validator;
 
 class Site
@@ -78,10 +80,15 @@ class Site
     {
         return new View('site.add_department');
     }
-    public function addPosition(): string
+    public function addPosition(Request $request): string
     {
-        return new View('site.add_position');
+        $title_position = Position::all();
+        if ($request->method === 'POST'&& Position::create($request->all())){
+            app()->route->redirect('/add_position');
+        }
+        return new View('site.add_position', ['title_position' => $title_position]);
     }
+
     public function addDiscipline(): string
     {
         return new View('site.add_discipline');
