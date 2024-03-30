@@ -7,6 +7,7 @@
     if (!app()->auth::check()):
     ?>
     <form method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 1120px; height: 500px; background-color: #ceddf5">
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <label><input type="text" name="login" placeholder="Логин" class="login_input"></label>
         <label><input type="password" name="password" placeholder="Пароль" class="login_input"></label>
         <button style="width: 540px; height: 60px; background-color: #224d8c; border: none;

@@ -8,6 +8,7 @@
     </h2>
     <h3><?= $message ?? ''; ?></h3>
     <form method="post" style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 1120px; height: 500px; background-color: #ceddf5">
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <label><input type="text" name="name" class="signup_input" placeholder="Имя"></label>
         <label><input type="text" name="login" class="signup_input" placeholder="Логин"></label>
         <label><input type="password" name="password" class="signup_input" placeholder="Пароль"></label>
