@@ -12,7 +12,7 @@
     <nav style="background-color: #224d8c; height: 80px; display: flex; align-items: center; justify-content: space-around">
 
         <a href="<?= app()->route->getUrl('/hello') ?>">Главная</a>
-        <a href="<?= app()->route->getUrl('/employer_list') ?>">Список сотрудников</a>
+        <!--        <a href="--><?php //= app()->route->getUrl('/employer_list') ?><!--">Список сотрудников</a>-->
         <?php
         if (!app()->auth::check()):
             ?>

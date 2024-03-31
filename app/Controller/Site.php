@@ -112,19 +112,6 @@ class Site
     {
         return new View('site.add_deanery');
     }
-//    public function addEmployer(Request $request): string
-//    {
-//        $employers = Employer::all();
-//        $departments = Department::all();
-//        $positions = Position::all();
-//        $disciplines = Discipline::all();
-//        $list_disciplines = ListDiscipline::all();
-//        if ($request->method === 'POST'&& Employer::create($request->all())){
-//            app()->route->redirect('/add_employer');
-//        }
-//        return new View('site.add_employer', ['employers' => $employers, 'departments' => $departments,
-//            'positions' => $positions, 'list_disciplines' => $list_disciplines, 'disciplines' => $disciplines]);
-//    }
 
     public function addEmployer(Request $request): string
     {
@@ -173,19 +160,7 @@ class Site
             'positions' => $positions, 'disciplines' => $disciplines]);
     }
 
-//    public function searching(Request $request): string
-//    {
-//
-//        $employers = Employer::all();
-//
-//        if($request->method === 'POST'){
-//            $temp = $request->all();
-//            $employerID = $temp['employer'];
-//            $employers = Employer::where('surname', 'LIKE', "%$employerID%")->get();
-//        }
-//
-//        return new View('site.searching', ['employers' => $employers]);
-//    }
+
 
     public function search_employer(Request $request): string
     {

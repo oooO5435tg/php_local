@@ -42,6 +42,17 @@
         <!--            --><?php //} ?>
         <!--        </label>-->
 
+        <!--        <label>-->
+        <!--            <select name="id_discipline" class="signup_input">-->
+        <!--                <option value="">Дисциплина</option>-->
+        <!--                --><?php //foreach ($disciplines as $discipline) { ?>
+        <!--                    <option value="--><?php //echo $discipline->id_discipline; ?><!--">-->
+        <!--                        --><?php //echo $discipline->title_discipline; ?>
+        <!--                    </option>-->
+        <!--                --><?php //} ?>
+        <!--            </select>-->
+        <!--        </label>-->
+
         <label>
             <input type="hidden" name="id_discipline" value="">
             <?php foreach ($disciplines as $discipline) { ?>
@@ -56,9 +67,7 @@
         <label><input type="date" name="birthday" class="signup_input" placeholder="Дата рождение"></label>
         <label><input type="text" name="adress" class="signup_input" placeholder="Адрес прописки"></label>
 
-        <div>
-            <label class="label">Фото  <input type="file" name="image"></label>
-        </div>
+        <label>Изображение <input type="file" name="image"></label>
 
         <button style="width: 540px; height: 60px; background-color: #224d8c; border: none;
         border-radius: 10px; color: #b1caee; font-size: 16px;">Создать</button>
