@@ -15,6 +15,7 @@ return [
     ],
     'validators' => [
         'required' => \Validators\RequireValidator::class,
-        'unique' => \Validators\UniqueValidator::class
+        'unique' => \Validators\UniqueValidator::class,
+        'no_special_chars' => \Validators\NoSpecialCharsValidator::class
     ]
 ];

@@ -30,12 +30,13 @@ class Site
         if ($request->method === 'POST') {
 
             $validator = new Validator($request->all(), [
-                'name' => ['required'],
-                'login' => ['required', 'unique:users,login'],
-                'password' => ['required']
+                'name' => ['required', 'no_special_chars'],
+                'login' => ['required', 'unique:users,login', 'no_special_chars'],
+                'password' => ['required', 'no_special_chars']
             ], [
                 'required' => 'Поле :field пусто',
-                'unique' => 'Поле :field должно быть уникально'
+                'unique' => 'Поле :field должно быть уникально',
+                'no_special_chars' => 'Поле :field не должно содержать спец символов'
             ]);
 
             if($validator->fails()){
@@ -73,13 +74,6 @@ class Site
     public function hello(): string
     {
         return new View('site.hello', ['message' => 'hello working']);
-    }
-
-    public function employerList(): string
-    {
-        $employers = Employer::all();
-        $disciplines = Discipline::all();
-        return new View('site.employer_list', ['employers' => $employers]);
     }
 
     public function addDepartment(Request $request): string
@@ -145,11 +139,6 @@ class Site
         return new View('site.add_discipline');
     }
 
-    public function addDeanery(): string
-    {
-        return new View('site.add_deanery');
-    }
-
     public function addEmployer(Request $request): string
     {
         $employers = Employer::all();
@@ -201,6 +190,7 @@ class Site
 
     public function search_employer(Request $request): string
     {
+        $images = Employer::all();
         $employers = Employer::all();
 
         if ($request->method === 'POST') {
