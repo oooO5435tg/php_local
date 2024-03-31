@@ -80,9 +80,11 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'title_department' => ['required'],
+                'title_department' => ['required', 'no_special_chars', 'no_digits'],
             ], [
                 'required' => 'Поле :field пусто',
+                'no_special_chars' => 'Поле :field не должно содержать спец символов',
+                'no_digits' => 'Поле :field не должно содержать цифр'
             ]);
 
             if($validator->fails()){
@@ -101,9 +103,11 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'title_position' => ['required'],
+                'title_position' => ['required', 'no_special_chars', 'no_digits'],
             ], [
                 'required' => 'Поле :field пусто',
+                'no_special_chars' => 'Поле :field не должно содержать спец символов',
+                'no_digits' => 'Поле :field не должно содержать цифр'
             ]);
 
             if($validator->fails()){
@@ -122,9 +126,10 @@ class Site
     {
         if ($request->method === 'POST') {
             $validator = new Validator($request->all(), [
-                'title_discipline' => ['required'],
+                'title_discipline' => ['required', 'no_special_chars'],
             ], [
                 'required' => 'Поле :field пусто',
+                'no_special_chars' => 'Поле :field не должно содержать спец символов'
             ]);
 
             if($validator->fails()){
