@@ -144,6 +144,20 @@ class Site
         return new View('site.add_discipline');
     }
 
+//    public function addEmployer(Request $request): string
+//    {
+//        $employers = Employer::all();
+//        $departments = Department::all();
+//        $positions = Position::all();
+//        $disciplines = Discipline::all();
+//        if ($request->method === 'POST'&& Employer::create($request->all())){
+//            app()->route->redirect('/add_employer');
+//        }
+//        return new View('site.add_employer', ['employers' => $employers, 'departments' => $departments,
+//            'positions' => $positions, 'disciplines' => $disciplines]);
+//    }
+
+
     public function addEmployer(Request $request): string
     {
         $employers = Employer::all();
@@ -152,37 +166,34 @@ class Site
         $disciplines = Discipline::all();
 
         if ($request->method === 'POST') {
-            $data = $request->all();
+            $validator = new Validator($request->all(), [
+                'surname' => ['required', 'no_special_chars', 'no_digits'],
+                'name' => ['required', 'no_special_chars', 'no_digits'],
+                'patronymic' => ['required', 'no_special_chars', 'no_digits'],
+                'gender' => ['required'],
+                'birthday' => ['required', 'birthday_valid'],
+                'adress' => ['required', 'no_special_chars'],
+                'id_position' => ['required'],
+                'id_department' => ['required'],
+                'id_discipline' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'no_special_chars' => 'Поле :field не должно содержать спец символов',
+                'no_digits' => 'Поле :field не должно содержать цифр',
+                'birthday_valid' => 'Сотруднику должно быть не менее 18 лет'
+            ]);
 
-            $disciplineIds = $data['disciplines'];
-            $numberHours = $data['number_hours'];
-
-            $disciplineIdList = '';
-            $numberHoursList = '';
-
-            foreach ($disciplineIds as $index => $disciplineId) {
-                $disciplineIdList .= $disciplineId . ',';
-                $numberHoursList .= $numberHours[$index] . ',';
+            if ($validator->fails()) {
+                return new View('site.add_employer', [
+                    'message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE),
+                    'employers' => $employers,
+                    'departments' => $departments,
+                    'positions' => $positions,
+                    'disciplines' => $disciplines,
+                ]);
             }
 
-            $disciplineIdList = rtrim($disciplineIdList, ',');
-            $numberHoursList = rtrim($numberHoursList, ',');
-
-            $employerData = [
-                'surname' => $data['surname'],
-                'name' => $data['name'],
-                'patronymic' => $data['patronymic'],
-                'gender' => $data['gender'],
-                'birthday' => $data['birthday'],
-                'adress' => $data['adress'],
-                'id_department' => $data['id_department'],
-                'id_position' => $data['id_position'],
-                'id_discipline' => $disciplineIdList,
-                'number_hours' => $numberHoursList,
-                'image' => $data['image']
-            ];
-
-            if (Employer::create($employerData)) {
+            if (Employer::create($request->all())) {
                 app()->route->redirect('/add_employer');
             }
         }
@@ -190,7 +201,6 @@ class Site
         return new View('site.add_employer', ['employers' => $employers, 'departments' => $departments,
             'positions' => $positions, 'disciplines' => $disciplines]);
     }
-
 
 
     public function search_employer(Request $request): string
