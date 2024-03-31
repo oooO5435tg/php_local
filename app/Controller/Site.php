@@ -84,28 +84,65 @@ class Site
 
     public function addDepartment(Request $request): string
     {
-        $title_department = Department::all();
-        if ($request->method === 'POST'&& Department::create($request->all())){
-            app()->route->redirect('/add_department');
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'title_department' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+            ]);
+
+            if($validator->fails()){
+                return new View('site.add_department',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
+            if (Department::create($request->all())){
+                app()->route->redirect('/add_department');
+            }
         }
-        return new View('site.add_department', ['title_department' => $title_department]);
+        return new View('site.add_department');
     }
+
     public function addPosition(Request $request): string
     {
-        $title_position = Position::all();
-        if ($request->method === 'POST'&& Position::create($request->all())){
-            app()->route->redirect('/add_position');
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'title_position' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+            ]);
+
+            if($validator->fails()){
+                return new View('site.add_position',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
+            if (Position::create($request->all())){
+                app()->route->redirect('/add_position');
+            }
         }
-        return new View('site.add_position', ['title_position' => $title_position]);
+        return new View('site.add_position');
     }
 
     public function addDiscipline(Request $request): string
     {
-        $title_discipline = Discipline::all();
-        if ($request->method === 'POST'&& Discipline::create($request->all())){
-            app()->route->redirect('/add_discipline');
+        if ($request->method === 'POST') {
+            $validator = new Validator($request->all(), [
+                'title_discipline' => ['required'],
+            ], [
+                'required' => 'Поле :field пусто',
+            ]);
+
+            if($validator->fails()){
+                return new View('site.add_discipline',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
+            if (Discipline::create($request->all())){
+                app()->route->redirect('/add_discipline');
+            }
         }
-        return new View('site.add_discipline', ['title_discipline' => $title_discipline]);
+        return new View('site.add_discipline');
     }
 
     public function addDeanery(): string
