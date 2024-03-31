@@ -12,4 +12,7 @@ Route::add(['GET', 'POST'], '/add_department', [Controller\Site::class, 'addDepa
 Route::add(['GET', 'POST'], '/add_position', [Controller\Site::class, 'addPosition']);
 Route::add(['GET', 'POST'], '/add_discipline', [Controller\Site::class, 'addDiscipline']);
 Route::add(['GET', 'POST'], '/add_deanery', [Controller\Site::class, 'addDeanery']);
-Route::add('GET', '/add_employer', [Controller\Site::class, 'addEmployer']);
+Route::add(['GET', 'POST'], '/add_employer', [Controller\Site::class, 'addEmployer']);
+Route::add(['GET', 'POST'], '/search_employer', [Controller\Site::class, 'search_employer']);
+Route::add(['GET', 'POST'], '/search_department', [Controller\Site::class, 'search_department']);
+Route::add(['GET', 'POST'], '/search_discipline', [Controller\Site::class, 'search_discipline']);

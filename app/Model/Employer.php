@@ -14,7 +14,14 @@ class Employer extends Model
         'surname',
         'name',
         'patronymic',
+        'gender',
         'birthday',
-        'adress'
+        'adress',
+        'id_department',
+        'id_position',
+        'id_discipline',
+        'number_hours',
+        'id_list',
+        'image'
     ];
 }
